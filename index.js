@@ -33,8 +33,14 @@ app.get("/", async (req, res) => {
 app.post("/create", async (req, res) => {
   const { email, password } = req.body;
   try {
-    await Admin.create({ email, password, role: "Administrator" });
-    res.send({ status: "registered", data: req.body });
+    const allUsers = await Admin.find({});
+    const temp = allUsers.find((i) => i.email === email);
+    if (temp?.email === email) {
+      res.send({ status: "userExists" });
+    } else {
+      await Admin.create({ email, password, role: "Administrator" });
+      res.send({ status: "registered", data: req.body });
+    }
   } catch (error) {
     console.log(error);
   }
