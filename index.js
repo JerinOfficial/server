@@ -39,7 +39,7 @@ app.post("/create", async (req, res) => {
     console.log(error);
   }
 });
-app.get("/", async (req, res) => {
+app.get("/admin", async (req, res) => {
   const allUsers = await Admin.find({});
   res.send({ data: allUsers });
 });
