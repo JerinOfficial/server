@@ -17,9 +17,9 @@ mongoose
     console.log("database connected");
   });
 app.post("/add", async (req, res) => {
-  const { name, email, password, userType } = req.body;
+  const { email, password, description, team, role } = req.body;
   try {
-    await User.create({ name, email, password, userType });
+    await User.create({ email, password, description, team, role });
     res.send({ status: "registered", data: req.body });
   } catch (error) {
     console.log(error);
