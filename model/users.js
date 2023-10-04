@@ -5,6 +5,7 @@ const userSchma = new mongoose.Schema({
   description: String,
   team: String,
   role: String,
+  userId: String,
 });
 
 const User = mongoose.model("User", userSchma);
