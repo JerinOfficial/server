@@ -49,3 +49,13 @@ app.get("/admin", async (req, res) => {
   const allUsers = await Admin.find({});
   res.send({ data: allUsers });
 });
+app.delete("/:id", async (req, res) => {
+  const id = req.params.id;
+  try {
+    const prev = await User.findById(id);
+    await User.deleteOne(prev);
+    res.send({ status: "deleted" });
+  } catch (error) {
+    console.log(error);
+  }
+});
